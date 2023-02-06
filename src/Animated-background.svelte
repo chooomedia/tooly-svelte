@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let characters = ['🥳', '🎉', '✨'];
+	let characters = ['1', '0', '3'];
 
-	let confetti = new Array(10).fill()
+	let confetti = new Array(83).fill()
 		.map((_, i) => {
 			return {
 				character: characters[i % characters.length],
@@ -21,8 +21,8 @@
 			frame = requestAnimationFrame(loop);
 
 			confetti = confetti.map(emoji => {
-				emoji.y += 0.7 * emoji.r;
-				if (emoji.y > 120) emoji.y = -20;
+				emoji.y += .3 * emoji.r;
+				if (emoji.y > 100) emoji.y = -20;
 				return emoji;
 			});
 		}
@@ -43,17 +43,18 @@
 
 <style>
 	:global(body) {
-		overflow: hidden;
-        overflow-y: scroll;
+		overflow-y: hidden;
+        overflow-x: scroll;
 	}
 	span {
 		position: absolute;
-		font-size: 10vw;
+		font-size: 3vw;
 		user-select: none;
+		opacity: .1;
 	}
 	.inner {
 		position: absolute;
-		background: rgba(0,0,0,0.3);
+		background: rgba(0,0,0,0.03);
 		width: 100%;
 		height: 100%;
 		top: 0;

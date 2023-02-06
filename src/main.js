@@ -1,4 +1,6 @@
 import './global.scss';
+import './scss/variables.scss';
+import './scss/Fooorm.scss';
 
 import App from './App.svelte';
 

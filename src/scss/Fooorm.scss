@@ -1,0 +1,32 @@
+@import 'tooly-fonts';
+@import 'variables';
+@import 'text';
+
+.et_pb_section {
+    .et_pb_contact_form_0.et_pb_contact_form_container.et_pb_module {
+        .et_pb_button {
+            border-width: 0px !important;
+            border-radius: 15px;
+            font-size: 22px;
+            font-family: $font-family_3 !important;
+            font-weight: 700 !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+            padding-right: 1em !important;
+            padding-left: 1em !important;
+            &:hover {
+                color: $color_3 !important;
+                background-image: initial !important;
+                background-color: $background-color_6 !important;
+                padding-right: 1em !important;
+                padding-left: 1em !important;
+            }
+            &:before {
+                display: none !important;
+            }
+            &:after {
+                display: none !important;
+            }
+        }
+    }
+}
