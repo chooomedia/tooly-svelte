@@ -1,0 +1,224 @@
+@import 'variables';
+
+html,
+body {
+  background-color: $accent-color-secondary;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  // color: $accent-color-secondary;
+  padding: 8px;
+  background-color: $accent-color-light;
+  transition: background-color 0.3s;
+  color: $accent-color-secondary;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+section {
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: $accent-color-primary;
+  font-weight: 700;
+  font-size: clamp(2rem, 3rem, 6rem);
+}
+
+a {
+  color: $accent-color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $accent-color-visited;
+  }
+}
+
+label,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.5rem 0.6rem;
+  box-sizing: border-box;
+  transition: all .7s;
+  border: 2px solid $accent-color-primary;
+  border-radius: 15px;
+
+  &:disabled {
+    color: $accent-color-input-deactive;
+  }
+}
+
+input {
+  border-radius: 15px;
+  transition: all .7s;
+  line-height: 33px;
+  text-indent: 10px;
+
+  &[type="text"],
+  &[type="checkbox"] {
+    color: $accent-color-secondary;
+    background-color: $accent-color-light;
+    outline: none !important;
+
+    &:disabled {
+      color: $accent-color-input-deactive;
+    }
+
+    &:not(:disabled):active {
+      background-color: $accent-color-primary;
+    }
+
+    &:focus {
+      border-color: $accent-color-light;
+    }
+  }
+}
+
+main {
+  text-align: center;
+  padding: 1em;
+  max-width: 240px;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    max-width: none;
+  }
+}
+
+.mousefield {
+  height: 100px;
+  border: 1px solid $accent-color-primary;
+  background: $accent-color-primary-50;
+  display: flex;
+  padding: 3rem 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#Chat {
+  position: fixed;
+  width: 320px;
+  right: 5px;
+  bottom: 5px;
+  padding: 1rem;
+  border-radius: 15px;
+  background: $accent-color-light;
+  border: 1px solid $accent-color-primary;
+  transition: all .3s;
+
+  .chat {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    justify-content: center;
+    height: auto;
+    max-height: 330px;
+    max-width: 320px;
+    overflow-y: auto;
+  }
+
+  h2 {
+    margin: 0 auto 1rem auto;
+    line-height: 2rem;
+  }
+
+  .scrollable {
+    flex: 1 1 auto;
+    border-top: 1px solid $accent-color-primary;
+    margin: 0 0 0.5em 0;
+    overflow-y: auto;
+  }
+
+  article {
+    margin: 0.5em 0;
+  }
+
+  .user {
+    text-align: right;
+  }
+
+  span {
+    padding: 0.5em 1em;
+    display: inline-block;
+  }
+
+  .eliza span {
+    background-color: $accent-color-primary-50;
+    border-radius: 1em 1em 1em 0;
+  }
+
+  .user span {
+    background-color: $accent-color-light;
+    color: white;
+    border-radius: 1em 1em 0 1em;
+    word-break: break-all;
+  }
+
+}
+
+#Custom-transitions {
+  padding: 3rem auto;
+  min-height: 300px;
+  display: block;
+}
+
+body.dark-mode {
+  background: $accent-color-secondary;
+  background-color: $accent-color-secondary;
+  color: $accent-color-primary;
+
+  input {
+    cursor: pointer;
+    color: $accent-color-primary;
+    border: 2px solid $accent-color-primary;
+    background: transparent;
+
+    &:focus,
+    &:active {
+      color: $accent-color-light;
+      border: 2px solid $accent-color-light;
+      outline: transparent;
+      background: $accent-color-primary-50;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    color: $accent-color-secondary;
+    border: 2px solid $accent-color-primary;
+    background: $accent-color-primary;
+    border-radius: 15px;
+    padding: 0.5rem .6rem;
+    transition: all .7s;
+
+    &:focus,
+    &:active {
+      color: $accent-color-light;
+      border: 2px solid $accent-color-primary;
+      outline: transparent;
+      background: $accent-color-primary-50;
+    }
+  }
+
+  #Chat {
+    background: $accent-color-secondary;
+
+    .user span {
+      color: $accent-color-secondary;
+    }
+  }
+}
