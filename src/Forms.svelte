@@ -1,4 +1,22 @@
 <script>
+	export let plural = 'Contact Forms';
+	export let slug = 'et_pb_contact_form';
+	export let child_slug = 'et_pb_contact_field';
+	export let child_item_text = 'Field';
+  
+	let main_css_element = 'et_pb_contact_form_container';
+	let settings_modal_toggles = {
+	  General: {
+		toggles: {
+		  main_content: 'Text',
+		  email: 'Email',
+		  elements: 'Elements',
+		  redirect: 'Redirect',
+		  spam: 'Spam Protection'
+		}
+	  }
+	};
+
 	let name = '';
 	let email = '';
 	let phone = '';
@@ -21,7 +39,7 @@
 	};
 </script>
 
-<div class="et_pb_contact_form_container clearfix">
+<div class="{main_css_element}">
 	<div class="et-pb-contact-message">
 		
 	</div>
@@ -47,7 +65,6 @@
 		<button type="submit" disabled={!answer}>Submit</button>
 	</form>
 </div>
-
 
 <style>
 	input {
