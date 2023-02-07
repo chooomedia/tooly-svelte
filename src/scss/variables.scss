@@ -1,9 +1,19 @@
+$spacing-1: 15px;
+$spacing-2: 30px;
+$spacing-3: 45px;
+
+$fontsize-1: 18px;
+$fontsize-2: 22px;
+$fontsize-3: 32px;
+$fontsize-4: 42px;
+
 $accent-color-primary: #5dff31;
 $accent-color-primary-50: #5eff3187;
 $accent-color-secondary: #212121;
 $accent-color-visited: #5eff3185;
 $accent-color-input-deactive: #232323;
 $accent-color-light: #f5f5f5;
+$accent-color-dark: #4d4d4d;
 
 $color_1: #d5d1cf;
 $color_2: #5dff31;
@@ -13,9 +23,9 @@ $color_5: #5dfe32;
 $color_6: rgba(255,255,255,0.65);
 $color_7: #212121;
 $color_8: #ffffff;
-$font-family_1: 'Lato-Regular',Helvetica,Arial,Lucida,sans-serif;
-$font-family_2: 'Lato-Regular',Helvetica,Arial,Lucida,sans-serif;
-$font-family_3: 'Slabo-Regular',Helvetica,Arial,Lucida,sans-serif;
+$font-family_1: 'LatoRegular', sans-serif, sans-serif;
+$font-family_2: 'LatoRegular', sans-serif, sans-serif;
+$font-family_3: 'Slabo27px', sans-serif;
 $background-color_1: #212121;
 $background-color_2: #262626;
 $background-color_3: rgba(93,255,49,0.03);

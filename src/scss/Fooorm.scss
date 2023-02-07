@@ -1,19 +1,134 @@
-@import 'tooly-fonts';
 @import 'variables';
 @import 'text';
+
+a {
+    color: $accent-color-primary;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: $accent-color-visited;
+    }
+}
+
+button:not(.dark-mode-toggle),
+select,
+textarea {
+    padding: 0.5rem 0.6rem;
+    box-sizing: border-box;
+    transition: all .7s;
+    border: 2px solid $accent-color-primary;
+    border-radius: $spacing-1;
+
+    &:disabled {
+        color: $accent-color-input-deactive;
+    }
+}
+
+label:not([for="optin"]) {
+    display: none;
+}
+
+input {
+    font-family: 'LatoRegular', sans-serif, sans-serif;
+    font-size: $fontsize-1;
+    line-height: 1.3em;
+    border-radius: $spacing-1;
+    transition: all .7s;
+    padding-top: $spacing-1;
+    padding-right: $spacing-1;
+    padding-bottom: $spacing-1;
+    padding-left: $spacing-1;
+    border-color: $accent-color-primary;
+    border-style: solid;
+
+    &[type="text"],
+    &[type="checkbox"] {
+        font-family: 'LatoRegular', sans-serif, sans-serif;
+        font-size: $fontsize-1;
+        color: $accent-color-secondary;
+        background-color: $accent-color-light;
+        outline: none !important;
+
+        &:disabled {
+            color: $accent-color-input-deactive;
+        }
+
+        &:not(:disabled):active {
+            background-color: $accent-color-primary;
+        }
+
+        &:focus {
+            border-color: $accent-color-secondary;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    input#optin[type="checkbox"]:checked::before {
+        transform: scale(0.5);
+    }
+}
+
+input#optin[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: $fontsize-2;
+    top: -10px;
+    left: 2px;
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 50ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: $accent-color-primary;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.et_pb_contact_field_3 {
+    input {
+        border: 2px solid #5dff31 !important;
+        padding: 8px !important;
+        flex: 1;
+    }
+    label.Field {
+        background: rgba(255,255,255,0.9);
+        border-radius: $spacing-1;
+        padding: 10px;
+        color: $accent-color-secondary;
+        flex: 15;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    input#optin[type="checkbox"] {
+        transform: scale(3);
+    }
+
+    .et_pb_contact_field_3 {
+        label.Field {
+            text-align: center;
+        }
+    }
+}
 
 .et_pb_section {
     .et_pb_contact_form_0.et_pb_contact_form_container.et_pb_module {
         .et_pb_button {
             border-width: 0px !important;
-            border-radius: 15px;
-            font-size: 22px;
+            border-radius: $spacing-1;
+            font-size: $fontsize-2;
             font-family: $font-family_3 !important;
             font-weight: 700 !important;
             padding-top: 8px !important;
             padding-bottom: 8px !important;
             padding-right: 1em !important;
             padding-left: 1em !important;
+
             &:hover {
                 color: $color_3 !important;
                 background-image: initial !important;
@@ -21,12 +136,23 @@
                 padding-right: 1em !important;
                 padding-left: 1em !important;
             }
+
             &:before {
                 display: none !important;
             }
+
             &:after {
                 display: none !important;
             }
         }
+    }
+
+    progress,
+    input[type='range'] {
+        font-family: $font-family_3 !important;
+        background: $accent-color-primary;
+        color: $accent-color-primary;
+        border-radius: $spacing-1;
+        overflow: hidden;
     }
 }

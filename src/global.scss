@@ -1,3 +1,82 @@
 @import 'scss/App.scss';
 @import 'scss/text.scss';
 @import 'scss/input.scss';
+@import 'scss/mixins.scss';
+@import 'scss/Flexbox.scss';
+@import 'scss/variables.scss';
+
+@font-face {
+	font-family: 'LatoRegular';
+	font-weight: 400;
+	font-display: swap;
+	src: url(http://localhost:8080/fonts/lato-latin-400-normal.woff) format('woff'),
+		 url(http://localhost:8080/fonts/lato-latin-400-normal.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'Slabo27px';
+	font-weight: normal;
+	font-display: swap;
+	src: url(http://localhost:8080/fonts/slabo-27px-latin-400-normal.woff) format('woff'),
+	     url(http://localhost:8080/fonts/slabo-27px-latin-400-normal.woff2) format('woff2');
+}
+
+section,
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Slabo27px', sans-serif;
+	color: $accent-color-light;
+	font-size: $fontsize-1;
+	color: $accent-color-secondary;
+}
+
+body {
+	font-family: 'LatoRegular', sans-serif, sans-serif;
+	font-size: $fontsize-1;
+}
+
+section,
+h1,
+h2,
+h3,
+h4 {
+	padding: 0;
+	margin-top: 10px;
+	margin-bottom: $spacing-1;
+	line-height: 1.2em;
+}
+
+p {
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height: 1.2em;
+}
+
+body {
+	line-height: 1.2em;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.flex-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	gap: 5px;
+	justify-content: space-evenly;
+}
+
+@media screen and (max-width:768px) {
+	body {
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	.flex-box {
+		max-width: 80%;
+		margin: 0 auto;
+	}
+}

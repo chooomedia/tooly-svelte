@@ -4,9 +4,18 @@
 
 <script>
 	import ButtonDarkmode from "./Button-darkmode.svelte";
-	let name = 'world';
 </script>
 
-<ButtonDarkmode>
-	Dark mode
-</ButtonDarkmode>
+<nav id="Darkmode">
+	<ButtonDarkmode>
+		Dark mode
+	</ButtonDarkmode>
+</nav>
+
+<style>
+#Darkmode {
+	box-sizing: border-box;
+	text-align:left;
+	z-index: 100;
+}
+</style>

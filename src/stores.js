@@ -10,14 +10,12 @@ export const time = readable(new Date(), function start(set) {
 	};
 });
 
-const start = new Date();
-
 export const elapsed = derived(
 	time,
 	$time => {}
 );
 
-export const name = writable('world');
+export const brandName = writable('world');
 
 export const greeting = derived(
 	name,
@@ -36,3 +34,9 @@ function createCount() {
 }
 
 export const count = createCount();
+
+export const rootStore = writable({
+	test : {
+		a : 0
+	}
+})
