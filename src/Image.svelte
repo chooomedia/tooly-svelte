@@ -7,7 +7,7 @@
 
 <style>
     img.tooly {
-        max-height: 640px;
+        max-height: 580px;
     }
 
     @media screen and (max-width:768px) {

@@ -3,22 +3,22 @@
 
 	let characters = 
 	[
-		'http://localhost:8080/icons/tooly-pattern-icon-farbroller-180x180px.png', 
-		'http://localhost:8080/icons/tooly-pattern-icon-pinsel-180x180px.png', 
-		'http://localhost:8080/icons/tooly-pattern-icon-saege-fuchsschwanz-180x180px.png',
-		'http://localhost:8080/icons/tooly-pattern-icon-schraubendreher-schraubenzieher-180x180px.png',
-		'http://localhost:8080/icons/tooly-pattern-icon-schraubenschluessel-180x180px.png',
-		'http://localhost:8080/icons/tooly-pattern-icon-spatel-180x180px.png',
-		'http://localhost:8080/icons/tooly-pattern-icon-spaten-schaufel-180x180px.png'
+		'/icons/tooly-pattern-icon-farbroller-180x180px.png', 
+		'/icons/tooly-pattern-icon-pinsel-180x180px.png', 
+		'/icons/tooly-pattern-icon-saege-fuchsschwanz-180x180px.png',
+		'/icons/tooly-pattern-icon-schraubendreher-schraubenzieher-180x180px.png',
+		'/icons/tooly-pattern-icon-schraubenschluessel-180x180px.png',
+		'/icons/tooly-pattern-icon-spatel-180x180px.png',
+		'/icons/tooly-pattern-icon-spaten-schaufel-180x180px.png'
 	];
 
-	let confetti = new Array(40).fill()
+	let tools = new Array(66).fill()
 		.map((_, i) => {
 			return {
 				character: characters[i % characters.length],
-				x: Math.random() * 100,
-				y: -10 - Math.random() * 100,
-				r: 0.3 + Math.random() * 1
+				y: Math.random() * 120,
+				x: -10 - Math.random() * 20,
+				r: 0.5 + Math.random() * 1
 			};
 		})
 		.sort((a, b) => a.r - b.r);
@@ -29,13 +29,12 @@
 		function loop() {
 			frame = requestAnimationFrame(loop);
 
-			confetti = confetti.map(emoji => {
-				emoji.y += .15 * emoji.r;
-				if (emoji.y > 100) emoji.y = -10;
+			tools = tools.map(emoji => {
+				emoji.x += .1 * emoji.r;
+				if (emoji.x > 100) emoji.x = -50;
 				return emoji;
 			});
 		}
-
 		loop();
 
 		return () => cancelAnimationFrame(frame);
@@ -44,8 +43,8 @@
 
 <div class="Animated-background">
 	<div class="inner">
-		{#each confetti as c}
-		<span style="left: {c.x}%; top: {c.y}%; transform: scale({c.r})">
+		{#each tools as c}
+		<span style="right: {c.x}%; top: {c.y}%; transform: scale({c.r})">
 			<img width="100px" height="100px" src="{c.character}" alt="Tooly Tools"/>
 		</span>
 		{/each}
@@ -64,7 +63,7 @@
 		position: absolute;
 		font-size: 2vw;
 		user-select: none;
-		opacity: .2;
+		opacity: .1;
 	}
 	.inner {
 		position: absolute;

@@ -68,8 +68,8 @@
 
 <style>
 	input {
-		display: block;
-		width: 90.5%;
+		box-sizing: border-box;
+		width: 100%;
 	}
 
 	.et_pb_contact_submit {

@@ -1,36 +1,32 @@
 <script>
 	import Darkmode from './Dark-mode.svelte';
-	import { quintOut } from 'svelte/easing';
-	import { fade, draw, fly } from 'svelte/transition';
-	import { expand } from './custom-transitions.js';
+	import { elasticIn, elasticOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
 	import { bubble, tool } from './shapes.js';
+	import { onMount } from 'svelte';
+
+	let ready = false;
+	onMount(() => ready = true);
 
 	export let brandName;
 	let visible = true;
 </script>
-
 <header class="col-xs-6">
-	<Darkmode/>
+	<Darkmode />
 	{#if visible}
 	<div>
-		<svg xmlns="http://www.w3.org/2000/svg" width="96px" height="96px" viewBox="0 0 112 72">
-			<g out:fade="{{duration: 2000}}" opacity=1>
-				<path id="bubble"
-					in:expand="{{duration: 1200, delay: 1000, easing: quintOut}}"
-					style="stroke: transparent; fill: #5dff31; stroke-width: 0;"
-					d={bubble}
-				/>
-				<path id="tool"
-					in:draw="{{duration: 1200, delay: 2000, easing: quintOut}}"
-					d={tool}
-				/>
+		{#if ready}
+		<svg id="logoSvg" xmlns="http://www.w3.org/2000/svg" width="96px" height="96px" viewBox="0 0 112 72">
+			<g in:fly="{{y: 200, duration: 700, elasticIn}}" out:fly="{{y: -200, duration: 700, elasticOut}}">
+				<path id="bubble" d={bubble}/>
+				<path id="tool" d={tool} />
 			</g>
-		</svg>		
+		</svg>
+		{/if}	
 		<h1>{brandName}</h1>
 	</div>
 	{/if}
 </header>
-
 <style>
 header {
 	width: 1080px;

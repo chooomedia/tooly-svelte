@@ -4163,7 +4163,7 @@ function handleMessage(event) {
 }
 
 async function getData() {
-	const res = await fetch(`http://localhost:8080/number.json`);
+	const res = await fetch(`/number.json`);
 	const dataObject = await res.json();
 
 	if (res.ok) {
@@ -6300,7 +6300,7 @@ function instance($$self, $$props, $$invalidate) {
 	let logos = [];
 
 	(0,svelte__WEBPACK_IMPORTED_MODULE_1__.onMount)(async () => {
-		const res = await fetch(`http://localhost:8080/logos.json`);
+		const res = await fetch(`/logos.json`);
 		$$invalidate(0, logos = (await res.json()).logos);
 	});
 
