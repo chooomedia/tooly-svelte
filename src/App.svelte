@@ -1,5 +1,5 @@
 <script>
-	//import { darkmodestore } from './stores.js';
+	import { darkmodestore } from './stores.js';
 	import Header from './Header.svelte';
 	import Flexbox from './Flexbox.svelte';
 	import Image from './Image.svelte';
@@ -11,17 +11,20 @@
   	import FixedMenu from './Fixed-menu.svelte';
 	import BackgroundMaks from './Background-maks.svelte';
 
-	let darkmodestore = JSON.parse(localStorage.getItem("darkmodeState"));
-
 	let landingpageHeadline= 'Sprachunterstützung für einfachere Arbeit kostenlos anmelden und exklusiven Zugang sichern';
 	let landingpageSubline = 'Schließe Verständigungslücken ab März mit Tooly. Jetzt kostenlos anmelden und deine Arbeit revolutionieren.';
 
 	let signal = '';
-	const listener = () => {
-		const value = JSON.parse(localStorage.getItem("darkmodeState"));
-		if (!value) return;
-		signal = value;
-	};
+
+	/* This function reacts on every change of the block change "$darkmodestore" */
+	$:{
+		if ($darkmodestore) {
+			document.body.classList.add("dark-mode");
+		} else {
+			document.body.classList.remove("dark-mode");
+		}
+	}
+
 </script>
 
 <main>
@@ -30,8 +33,8 @@
 	<!--et_pb_section et_pb_section_0 et-light-mode-capable et_pb_section_parallax et_pb_with_background et_section_regular-->
 	<section id="landingPage" class="row">
 		<Flexbox>
-			<div slot="left" on:storage={listener}>
-				{#if darkmodestore}
+			<div slot="left">
+				{#if $darkmodestore}
 				<Image ImgSrc="/tooly-apple-watch-and-iphone-x-white-mockup-02-2023-1024x997px.png"></Image>
 				{:else}
 				<Image ImgSrc="/tooly-apple-watch-and-iphone-x-black-mockup-02-2023-1024x997px.png"></Image>

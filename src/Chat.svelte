@@ -4,7 +4,7 @@
 
 	function animateWidthHeight({
 		node,
-		from = { width: 0, height: 0 },
+		from = { width: 0, height: '100%' },
 		to = { width: "auto", height: "auto" }
 	}) {
 		const style = getComputedStyle(node);
