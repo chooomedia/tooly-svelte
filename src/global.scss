@@ -21,6 +21,11 @@
 	     url(http://localhost:8080/fonts/slabo-27px-latin-400-normal.woff2) format('woff2');
 }
 
+main {
+	max-width: 1080px;
+	margin: 0 auto;
+}
+
 section,
 h1,
 h2,
@@ -47,12 +52,20 @@ h4 {
 	line-height: 1.2em;
 }
 
-section:not(#landingPage) {
+section {
 	margin: 0 auto;
 	width: 100%;
-	min-height: 100dvh;
-	background: #1c1c1c;
+	z-index: 999;
+
+	&#landingPage{
+		z-index: 3;
+
+		.Animated-background {
+			z-index: 1;
+		}
+	}
 }
+
 
 p {
 	padding: 0;
@@ -74,6 +87,7 @@ body {
 	flex-direction: row;
 	gap: 5px;
 	justify-content: space-evenly;
+	min-height: calc($spacing-2 + 10px);
 }
 
 @media screen and (max-width:768px) {
@@ -82,7 +96,6 @@ body {
 		overflow-x: hidden;
 	}
 	.flex-box {
-		max-width: 80%;
 		margin: 0 auto;
 	}
 }
@@ -93,9 +106,10 @@ body.dark-mode .et_pb_background_mask {
 
 .et_pb_background_mask {
 	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiNmNWY1ZjUiIHZpZXdCb3g9IjAgMCAxOTIwIDE0NDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxwYXRoIGQ9Ik0xOTIwLDEwNjEuMTJjLTM5LjE2LTYuNjQtMTI0LjM4LTQ5LjkxLTIyOS0xMDEuMTItMjgwLjMxLTEzNy4yMS0zNjAsMTY4LjktNzMxLDE2OC45QzY2NSwxMTI4LjksNDE5LDg2Myw0MTksNjE3LDQxOSwxNDEsODY4LjY2LDAsODY5Ljg4LDBIMFYxNDQwSDE5MjBaIi8+PC9zdmc+);
-	bottom: -33px;
+	bottom: -8rem;
 	left: 0;
 	position: absolute;
+	z-index: 1;
 	right: 0;
 	top: 0;
 	background-size: contain;

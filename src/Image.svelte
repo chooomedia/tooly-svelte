@@ -14,7 +14,7 @@
         img {
             max-width: 88%;
             margin: 0 auto;
-            transform: translateX(-10px);
+            transform: translateX(23px);
         }
     }
 </style>

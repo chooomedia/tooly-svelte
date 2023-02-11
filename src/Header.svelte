@@ -38,6 +38,7 @@ header {
     z-index: 100;
     flex-direction: row;
     align-items: center;
+	margin: 0 auto;
 }
 
 @media screen and (max-width:768px) {

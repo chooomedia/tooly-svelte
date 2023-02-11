@@ -14,7 +14,7 @@ a {
     }
 }
 
-button:not(.dark-mode-toggle),
+button:not(.dark-mode-toggle):not(.close-button),
 select,
 textarea {
     padding: 0.5rem 0.6rem;
@@ -105,7 +105,7 @@ input#optin[type="checkbox"]:checked:before {
 
 @media screen and (max-width: 768px) {
     input#optin[type="checkbox"] {
-        transform: scale(2);
+        transform: scale(1.6);
     }
 
     .et_pb_contact_field_3 {

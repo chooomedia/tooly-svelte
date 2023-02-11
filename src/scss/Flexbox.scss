@@ -29,7 +29,7 @@ $fg-breakpoints: ((xs),
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
+	flex-wrap: no-wrap;
 	@include spacing(-$fg-gutter, margin, horizontal);
 }
 

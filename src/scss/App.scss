@@ -73,17 +73,8 @@ main {
 	justify-content: center;
 	align-items: center;
 
-	#flexbox {
-		display: flex;
-		max-width: 1080px;
-		gap: $spacing-2;
-		flex: 1;
-		margin: 0 auto;
-		max-height: 100vh;
-		position: relative;
+	.flexbox {
 		z-index: 99;
-		flex-direction: row;
-		flex-wrap: nowrap;
 	}
 
 	@media (min-width: 640px) {
@@ -104,64 +95,74 @@ main {
 	}
 }
 
-#Chat {
-	font-family: 'LatoRegular', sans-serif, sans-serif;
-	right: 0;
-	min-height: 56px;
-	min-width: 56px;
-	bottom: -$spacing-1;
+dialog#menu-dialog {
 	border-radius: $spacing-1;
-	background: $accent-color-light;
-	border: 2px solid $accent-color-dark;
-	transition: all .3s;
-	z-index: 101;
+	border: 2px solid $accent-color-dialog;
+	padding: 0 $spacing-1;
+	z-index:999;
+	position: fixed;
+	bottom: 5rem;
+	width: 306px;
 
-	.chat {
-		margin: 0 auto;
+	header {
+		h4 {
+			color: $accent-color-secondary;
+		}
+		.close-button {
+			max-height: 22px;
+			padding: 0;
+			margin-top:5px;
+			border: none;
+			background: transparent;
+			cursor: pointer;
+		}
+	}
+
+	#Chat {
+		font-family: 'LatoRegular', sans-serif, sans-serif;
 		display: flex;
-		padding: $spacing-1;
+		transition: all .3s;
+		margin: 0 auto;
 		flex-direction: column;
 		vertical-align: middle;
 		justify-content: center;
-		height: auto;
-		max-height: 94.3vh;
-		max-width: 320px;
-		overflow-y: auto;
+		max-height: 85.5vh;
+		padding-bottom: $spacing-1;
+	
+		.scrollable {
+			flex: 1 1 auto;
+			border-top: 2px solid $accent-color-primary;
+			margin: 0 0 0.5em 0;
+			overflow-y: auto;
+		}
+	
+		article {
+			margin: 0.5em 0;
+		}
+	
+		.user {
+			text-align: right;
+		}
+	
+		span {
+			padding: 0.5em 1em;
+			display: inline-block;
+		}
+	
+		.eliza span {
+			background-color: $accent-color-primary-50;
+			border-radius: 1em 1em 1em 0;
+		}
+	
+		.user span {
+			background-color: $accent-color-light;
+			color: $accent-color-secondary;
+			border: 2px solid $accent-color-primary;
+			border-radius: 1em 1em 0 1em;
+			word-break: break-all;
+		}
+	
 	}
-
-	.scrollable {
-		flex: 1 1 auto;
-		border-top: 2px solid $accent-color-primary;
-		margin: 0 0 0.5em 0;
-		overflow-y: auto;
-	}
-
-	article {
-		margin: 0.5em 0;
-	}
-
-	.user {
-		text-align: right;
-	}
-
-	span {
-		padding: 0.5em 1em;
-		display: inline-block;
-	}
-
-	.eliza span {
-		background-color: $accent-color-primary-50;
-		border-radius: 1em 1em 1em 0;
-	}
-
-	.user span {
-		background-color: $accent-color-light;
-		color: $accent-color-secondary;
-		border: 2px solid $accent-color-primary;
-		border-radius: 1em 1em 0 1em;
-		word-break: break-all;
-	}
-
 }
 
 .dark-mode-toggle {
@@ -195,7 +196,7 @@ main {
 		transition: background-color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 		&:before {
-			content: 'AM';
+			content: 'light';
 			position: absolute;
 			left: -50px;
 			top: $spacing-1;
@@ -203,12 +204,12 @@ main {
 		}
 
 		&:after {
-			content: 'PM';
+			content: 'dark';
 			position: absolute;
 			right: -48px;
 			top: $spacing-1;
 			font-size: $fontsize-1;
-			color: $accent-color-secondary;
+			color: $accent-color-primary
 		}
 	}
 
@@ -467,7 +468,7 @@ body.dark-mode {
 		}
 	}
 
-	button {
+	button:not(.close-button) {
 		cursor: pointer;
 		color: $accent-color-secondary;
 		border: 2px solid $accent-color-primary;
@@ -484,10 +485,54 @@ body.dark-mode {
 			background: $accent-color-primary-50;
 		}
 	}
+
+	dialog#menu-dialog {
+		background: $accent-color-secondary;
+		border-radius: $spacing-1;
+		border-color: $accent-color-primary-50;
+		padding: 0 $spacing-1;
+		z-index:1010;
+		position: fixed;
+		bottom: 80px;
+
+
+		header {
+			h4 {
+				color: $accent-color-primary;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768xpx) {
+		dialog#menu-dialog {
+			bottom: 60px;
+		}
+	}
+
 	#fixed-menu {
 		a.fixed-menu-icon {
 			background: $accent-color-secondary;
 			margin: 0;
+		}
+		a.fixed-menu-icon.active {
+			background: $accent-color-primary;
+
+			img {
+				filter: hue-rotate(-360deg) brightness(100%) contrast(0%);
+			}
+
+			&:before {
+				content: "";
+				position: absolute;
+				z-index: 1200;
+				bottom: 58px;
+				margin-left: 10px;
+				width: 0;
+				transition: all .3s;
+				border-bottom: 6px solid $accent-color-primary;
+				border-left: 6px solid transparent;
+				border-right: 6px solid transparent;
+			}
 		}
 	}
 
@@ -510,13 +555,14 @@ body.dark-mode {
 			background-color: transparent;
 			color: $accent-color-primary;
 		}
+	}
 
-		.close-button {
-			color: #f5f5f5;
+	.close-button {
+		margin-top:5px;
+		color: #f5f5f5;
 
-			#icon-close {
-				filter: invert(1);
-			}
+		#icon-close {
+			filter: invert(1);
 		}
 	}
 
@@ -557,8 +603,36 @@ body.dark-mode {
 }
 
 #fixed-menu {
-	a.fixed-menu-icon {
-		background: $accent-color-light;
+	a.fixed-menu-icon.active {
+		img {
+			filter: hue-rotate(-360deg) brightness(100%) contrast(0%);
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			z-index: 1200;
+			bottom: 58px;
+			margin-left: 8px;
+			width: 0;
+			transition: all .3s;
+			border-bottom: 8px solid $accent-color-dialog;
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			animation: fly-in 0.3s 1;
+			overflow: hidden;
+		}
+	}
+
+	@keyframes fly-in {
+		from {
+			transform: scale(0) translateY(8px);
+		}
+
+		to {
+			transform: scale(1) translateY(0px);
+		}
+		
 	}
 }
 
@@ -579,22 +653,41 @@ body.dark-mode {
 	}
 
 	main {
-		#flexbox {
+		.flexbox {
 			gap: 0;
+			margin: $spacing-2 auto;
 			max-width: unset;
 			width: 100%;
 			max-height: inherit;
 			min-height: 100dvh;
 			flex-direction: column;
 			align-items: center;
+			padding: $spacing-2 0;
 		}
 	}
 
-	#Chat {
-		max-width: 341px;
+	dialog#menu-dialog {
+		bottom: 31%!important;
+		z-index: 1010;
 
-		.chat {
-			max-height: 86.3vh;
+		#Chat {
+			max-width: 306px;
+	
+			.chat {
+				max-height: 76.3vh;
+			}
+		}
+	}
+
+	.et_pb_contact_field_3 {
+		max-width: 80%;
+	}
+
+	dialog#menu-dialog {
+		header {
+			h4 {
+				color: $accent-color-primary;
+			}
 		}
 	}
 

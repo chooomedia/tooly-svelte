@@ -1,20 +1,33 @@
+<script context="module">
+	import Chat from './Chat.svelte';
+	import CtaBox from './Ctabox.svelte';
+	import Countdown from './Countdown.svelte';
+	import FixedMenu from './Fixed-menu.svelte';
+	import Fooorms from './Fooorms.svelte';
+	import Image from './Image.svelte';
+	export const Widgets = {
+		"Chat": Chat,
+		"CtaBox": CtaBox,
+		"Countdown": Countdown,
+		"FixedMenu": FixedMenu,
+		"Fooorms": Fooorms,
+		"Image": Image
+	}
+</script>
+
 <script>
 	import { darkmodestore } from './stores.js';
 	import Header from './Header.svelte';
 	import Flexbox from './Flexbox.svelte';
-	import Image from './Image.svelte';
-	import Fooorms from './Fooorms.svelte';
-	import Chat from './Chat.svelte';
-	import CtaBox from './Ctabox.svelte';
 	import AnimatedBackground from './Animated-background.svelte';
-	import Countdown from './Countdown.svelte';
-  	import FixedMenu from './Fixed-menu.svelte';
 	import BackgroundMaks from './Background-maks.svelte';
+	import { close } from './shapes.js';
+	import { links } from './links.js';
+	import StickyContent from './StickyContent.svelte';
 
 	let landingpageHeadline= 'Sprachunterstützung für einfachere Arbeit kostenlos anmelden und exklusiven Zugang sichern';
 	let landingpageSubline = 'Schließe Verständigungslücken ab März mit Tooly. Jetzt kostenlos anmelden und deine Arbeit revolutionieren.';
-
-	let signal = '';
+	let stickToTop = true;
 
 	/* This function reacts on every change of the block change "$darkmodestore" */
 	$:{
@@ -25,13 +38,13 @@
 		}
 	}
 
+	let selectedLink = undefined;
 </script>
 
+<Header brandName={'Tooly'}></Header>
 <main>
-	<Header brandName={'Tooly'}></Header>
-	<p>{signal}</p>
 	<!--et_pb_section et_pb_section_0 et-light-mode-capable et_pb_section_parallax et_pb_with_background et_section_regular-->
-	<section id="landingPage" class="row">
+	<section id="landingPage">
 		<Flexbox>
 			<div slot="left">
 				{#if $darkmodestore}
@@ -64,40 +77,58 @@
 				<Fooorms></Fooorms>
 			</div>
 		</Flexbox>
-		<AnimatedBackground></AnimatedBackground>
 	</section>
-	<section id="stepsPage" class="row"></section>
-	<section id="appPage" class="row"></section>
-
-	<FixedMenu align={'bottom'}>
-		<slot name="button1">
-			<a href="#cookie-consent" class="icon-cookie fixed-menu-icon" target="_blank" rel="noreferrer" title="Button Menu">
-				<img src="/icons/icons8-cookies-100.png" alt="icon cookies" />
-			</a>
-		</slot>
-		<slot name="button2">
-			<a href="https://toolyapp.slack.com/archives/C04NCA68L9F" class="icon-slack fixed-menu-icon" target="_blank" rel="noreferrer" title="Button Menu">
-				<img src="/icons/icons8-slack-new-100.png" alt="icon slack" />
-			</a>
-		</slot>
-		<slot name="button3">
-			<a href="https://www.instagram.com/tooly.work/" class="icon-insta fixed-menu-icon" target="_blank" rel="noreferrer" title="Button Menu">
-			<img src="/icons/icons8-instagram-100.png" alt="icon instagram" />
-		</a>
-		</slot>
-		<slot name="button4">
-			<a href="https://www.facebook.com/tooly.work" class="icon-fb fixed-menu-icon" target="_blank" rel="noreferrer" title="Button Menu">
-			<img src="/icons/icons8-facebook-100.png" alt="icon facebook" />
-		</a>
-		</slot>
-		<slot name="button5">
-			<div id="Chat" class="icon-chat">
-				<Chat></Chat>
+	<section id="stepsPage">
+		<Flexbox>
+			<div slot="left" class="col-xs-6">
+				<CtaBox headline={landingpageHeadline} subline={landingpageSubline}></CtaBox>
 			</div>
-		</slot>
-	</FixedMenu>
+			<div slot="right2" class="col-xs-6">
+				<CtaBox headline={landingpageHeadline} subline={landingpageSubline}></CtaBox>
+			</div>
+		</Flexbox>
+	</section>
+	<!--
+	<section id="appPage" class="row"></section>
+	-->
 </main>
+
+<FixedMenu modalIsOpen={selectedLink} align={'bottom'}>
+	<div slot="modal">
+		<header class="flex-box">
+			<img src="{selectedLink.imgSrc}" width="24px" height="24px" alt="icon chat" />
+				<h4>{selectedLink.title}</h4>
+			<button class="close-button" on:click={() => selectedLink = false}>
+				<svg id="icon-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 121.31 122.876">
+					<path d="{close}" />
+				</svg>
+			</button>
+		</header>
+		<svelte:component this={Widgets[selectedLink.dialogContent]} />
+	</div>
+	{#each links as link}
+		<slot>
+			<a 
+				href={link.href}
+				target={link.target}
+				class={link.class}
+				class:active = {selectedLink == link}
+				rel={link.rel}
+				title={link.title}
+				on:click={() => {
+					if (selectedLink == link) {
+						selectedLink = undefined;
+					} else {
+						selectedLink = link;
+					}
+				}}>
+				<img src={link.imgSrc} alt={link.alt} />
+			</a>
+		</slot>
+	{/each}
+</FixedMenu>
 <BackgroundMaks></BackgroundMaks>
+<AnimatedBackground></AnimatedBackground>
 
 <style>
 	.fixed-menu-icon {

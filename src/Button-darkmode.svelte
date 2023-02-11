@@ -1,11 +1,9 @@
 <script>
-    import { darkmodestore } from './stores.js';
+  import { darkmodestore } from './stores.js';
 
   function toggleLightMode() {
-    $darkmodestore = !$darkmodestore;
-    document.body.classList.toggle("dark-mode");
+    $darkmodestore = !$darkmodestore; 
   }
-
 </script>
 
 <div class="dark-mode-toggle">
