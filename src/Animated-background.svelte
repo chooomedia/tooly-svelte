@@ -68,7 +68,7 @@
 	.inner {
 		position: absolute;
 		z-index: 1;
-		background: rgba(0,0,0,0.01);
+		background: rgba(0,0,0,0.1);
 		width: 100%;
 		height: 100%;
 		top: 0;

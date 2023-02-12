@@ -1,6 +1,5 @@
 <script>
     import sticky from './sticky.js';
-
     export let stickToTop = true;
 
     let isStuck = false;
@@ -21,7 +20,8 @@
     }
 
     .sticky[data-position='top'] {
-        top: 1rem;
+        top: 5rem;
+        padding: 0 2rem;
     }
 
     .sticky[data-position='bottom'] {
@@ -29,19 +29,15 @@
     }
 </style>
 
-<section>
-    {#if !stickToTop}
-        <slot />
-    {/if}
+{#if !stickToTop}
+    <slot />
+{/if}
 
-    <div
-        class="sticky"
-        class:isStuck
-        data-position={stickToTop ? 'top' : 'bottom'}
-        use:sticky={{ stickToTop }}
-        on:stuck={handleStuck}>
-         <slot />
+<div
+    class="sticky"
+    class:isStuck
+    data-position={stickToTop ? 'top' : 'bottom'}
+    use:sticky={{ stickToTop }}
+    on:stuck={handleStuck}>
+    <slot />
 </div>
-
-    
-</section>

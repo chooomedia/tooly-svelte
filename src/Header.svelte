@@ -11,7 +11,7 @@
 	export let brandName;
 	let visible = true;
 </script>
-<header class="col-xs-6">
+<header class="col-xs-12">
 	<Darkmode />
 	{#if visible}
 	<div>
@@ -35,7 +35,8 @@ header {
     vertical-align: middle;
     justify-content: space-between;
     text-align: center;
-    z-index: 100;
+    z-index: 101;
+	position: relative;
     flex-direction: row;
     align-items: center;
 	margin: 0 auto;

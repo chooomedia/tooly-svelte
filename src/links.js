@@ -4,7 +4,7 @@ export const links = [
         href: "#modal-cookie-consent",
         imgSrc: "/icons/icons8-cookies-100.png",
         alt: "icon cookies",
-        title: "Cookie Consent",
+        title: "Cookies",
         class: "icon-cookie fixed-menu-icon",
         rel: "noreferrer",
         dialogContent: "Cookie"
@@ -14,7 +14,7 @@ export const links = [
         href: "https://toolyapp.slack.com/archives/C04NCA68L9F",
         imgSrc: "/icons/icons8-slack-new-100.png",
         alt: "icon slack",
-        title: "Slack Channel",
+        title: "Slack",
         target: "_blank",
         class: "icon-slack fixed-menu-icon",
         rel: "noreferrer",

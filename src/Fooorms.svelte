@@ -42,7 +42,7 @@
 	<div class="et-pb-contact-message">
 		
 	</div>
-	<form on:submit={handleSubmit} class="et_pb_contact_form clearfix">
+	<form id="Fooorm" on:submit={handleSubmit} class="et_pb_contact_form clearfix">
 		<p class="et_pb_contact_field {child_slug}_{counter++}">
 			<label for="name">Dein Name</label>
 			<input type="text" id="name" bind:value={name} placeholder="Dein Name" />
@@ -96,7 +96,6 @@
 
 		input {
 			margin: 0 auto;
-			width: 80%;
 		}
 	}
 </style>

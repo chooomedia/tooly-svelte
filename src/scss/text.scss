@@ -15,6 +15,7 @@ h2 {
 h3 {
     font-family: $font-family_1;
     color: $accent-color-primary;
+    text-shadow: 0 0 1px $accent-color-secondary;
     font-size: $spacing-3;
     text-align: center;
     margin-top: 0px;
@@ -50,4 +51,11 @@ p {
 .color-light,
 .flex-box span {
     color: $accent-color-secondary;
+}
+
+b,
+strong {
+    font-family: 'LatoRegular';
+    font-weight: 700;
+    font-size: 92%;
 }

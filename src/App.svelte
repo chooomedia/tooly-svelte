@@ -1,17 +1,19 @@
 <script context="module">
 	import Chat from './Chat.svelte';
 	import CtaBox from './Ctabox.svelte';
+	import Box from './Box.svelte';
 	import Countdown from './Countdown.svelte';
-	import FixedMenu from './Fixed-menu.svelte';
+	import FixedMenu from './FixedMenu.svelte';
 	import Fooorms from './Fooorms.svelte';
-	import Image from './Image.svelte';
+	import ImageBubbles from './ImageBubbles.svelte';
 	export const Widgets = {
 		"Chat": Chat,
 		"CtaBox": CtaBox,
+		"Box": Box,
 		"Countdown": Countdown,
 		"FixedMenu": FixedMenu,
 		"Fooorms": Fooorms,
-		"Image": Image
+		"ImageBubbles": ImageBubbles
 	}
 </script>
 
@@ -19,15 +21,20 @@
 	import { darkmodestore } from './stores.js';
 	import Header from './Header.svelte';
 	import Flexbox from './Flexbox.svelte';
+	import { content } from './content.js';
+	import { lazyLoad } from './lazyload.js';
 	import AnimatedBackground from './Animated-background.svelte';
 	import BackgroundMaks from './Background-maks.svelte';
 	import { close } from './shapes.js';
 	import { links } from './links.js';
 	import StickyContent from './StickyContent.svelte';
+	import { elasticIn, elasticOut } from 'svelte/easing';
+    import { fly } from 'svelte/transition';
 
-	let landingpageHeadline= 'Sprachunterstützung für einfachere Arbeit kostenlos anmelden und exklusiven Zugang sichern';
-	let landingpageSubline = 'Schließe Verständigungslücken ab März mit Tooly. Jetzt kostenlos anmelden und deine Arbeit revolutionieren.';
 	let stickToTop = true;
+	let selectedLink = undefined;
+	let currentSection = "Forms";
+	let showMenu = true;
 
 	/* This function reacts on every change of the block change "$darkmodestore" */
 	$:{
@@ -38,7 +45,11 @@
 		}
 	}
 
-	let selectedLink = undefined;
+	function onVisible(e){
+		currentSection = e.detail;
+	}
+	function onInvisible(e){
+	}
 </script>
 
 <Header brandName={'Tooly'}></Header>
@@ -46,69 +57,102 @@
 	<!--et_pb_section et_pb_section_0 et-light-mode-capable et_pb_section_parallax et_pb_with_background et_section_regular-->
 	<section id="landingPage">
 		<Flexbox>
-			<div slot="left">
+			<StickyContent {stickToTop} slot="left">
 				{#if $darkmodestore}
-				<Image ImgSrc="/tooly-apple-watch-and-iphone-x-white-mockup-02-2023-1024x997px.png"></Image>
+				<div in:fly="{{z: 300, duration: 700}}" out:fly="{{z: 300, duration: 700}}">
+					<ImageBubbles
+						on:lazyLoad={content.medias.mockups.lightSrc}
+						ImgSrc={content.medias.mockups.lightSrc}
+						bubbleLeft={content.de.bubbles.landing.left}
+						bubbleRight={content.de.bubbles.landing.right}
+						currentSection={currentSection}
+					></ImageBubbles>
+				</div>
 				{:else}
-				<Image ImgSrc="/tooly-apple-watch-and-iphone-x-black-mockup-02-2023-1024x997px.png"></Image>
+				<div in:fly="{{z: 300, duration: 700}}" out:fly="{{z: 300, duration: 700}}">
+					<ImageBubbles 
+						on:lazyLoad={content.medias.mockups.darkSrc}
+						ImgSrc={content.medias.mockups.darkSrc}
+						bubbleLeft={content.de.bubbles.landing.left}
+						bubbleRight={content.de.bubbles.landing.right}
+						currentSection={currentSection}
+					></ImageBubbles>
+				</div>
 				{/if}
-			</div>
-			<div slot="right1">
-				<CtaBox headline={landingpageHeadline} subline={landingpageSubline}></CtaBox>
-			</div>
-			<div slot="right2">
-				<Countdown from="2023-02-07 08:00:00" dateFormat="YYYY-DD-MM H:m:s" zone="Europe/Berlin" let:remaining>
-					<div class="flex-box">
-						{#if remaining.done === false}
-						<span><h3>{remaining.days}</h3>Tage</span>
-						<span><h3>:</h3></span>
-						<span><h3>{remaining.hours}</h3> Stunden</span>
-						<span><h3>:</h3></span>
-						<span><h3>{remaining.minutes}</h3> Minuten</span>
-						<span><h3>:</h3></span>
-						<span><h3>{remaining.seconds}</h3> Sekunden</span>
-						{:else}
-						<h3 class="color-light">Start Beta-Phase</h3>
+			</StickyContent>
+			<div slot="right">
+				<Box on:visible={onVisible} on:invisible={onInvisible} name={"Forms"} direction={'flex-column'}>
+					<CtaBox headline={content.de.ctaBox.headline} subline={content.de.ctaBox.subline}></CtaBox>
+					<Countdown from="2023-02-07 08:00:00" dateFormat="YYYY-DD-MM H:m:s" zone="Europe/Berlin" let:remaining>
+						<div class="flex-box">
+							{#if remaining.done === false}
+							<span><h3>{remaining.days}</h3>Tage</span>
+							<span><h3>:</h3></span>
+							<span><h3>{remaining.hours}</h3> Stunden</span>
+							<span><h3>:</h3></span>
+							<span><h3>{remaining.minutes}</h3> Minuten</span>
+							<span><h3>:</h3></span>
+							<span><h3>{remaining.seconds}</h3> Sekunden</span>
+							{:else}
+							<h3 class="color-light">Start Beta-Phase</h3>
+							{/if}
+						</div>
+					</Countdown>
+					<Fooorms></Fooorms>
+				</Box>
+				<Box on:visible={onVisible} on:invisible={onInvisible} name={"Steps"} direction={'flex-row'}>
+					{#each content.de.stepBox.steps as step, i }
+						{#if currentSection == "Steps"}
+							<div class="col-lg-3" name="step" in:fly="{{y: 300, delay: i * 700, duration: 700, elasticIn}}" out:fly="{{y: 300, delay: i * 700, duration: 700, elasticOut}}">
+							<div class="icon">
+								<img use:lazyLoad={step.iconSrc} src={step.iconSrc} alt="Step Icon" />
+							</div>
+							<h2>{step.headline}</h2>
+							<p>{step.text}</p>
+							</div>
 						{/if}
+					{/each}
+				</Box>
+				<Box on:visible={onVisible} on:invisible={onInvisible} name={"Roadmap"} direction={'flex-row'}>
+					{#each content.de.roadMap.steps as roadMapStep, f }
+						{#if currentSection == "Roadmap"}
+							<div class="col-lg-3" name="step" in:fly="{{y: 300, delay: f * 700, duration: 700, elasticIn}}" out:fly="{{y: 300, delay: f * 700, duration: 700, elasticOut}}">
+							<div class="icon active">
+								<img use:lazyLoad={roadMapStep.iconSrc} src={roadMapStep.iconSrc} alt="Roadmap Icon" />
+							</div>
+							<h2>{roadMapStep.headline}</h2>
+							<p>{roadMapStep.text}</p>
+							</div>
+						{/if}
+					{/each}
+					<div slot="cta">
+						<a href="#logoSvg" type="button">Mitwirken</a>
 					</div>
-				</Countdown>
-			</div>
-			<div slot="right3">
-				<Fooorms></Fooorms>
+				</Box>
 			</div>
 		</Flexbox>
 	</section>
-	<section id="stepsPage">
-		<Flexbox>
-			<div slot="left" class="col-xs-6">
-				<CtaBox headline={landingpageHeadline} subline={landingpageSubline}></CtaBox>
-			</div>
-			<div slot="right2" class="col-xs-6">
-				<CtaBox headline={landingpageHeadline} subline={landingpageSubline}></CtaBox>
-			</div>
-		</Flexbox>
-	</section>
-	<!--
-	<section id="appPage" class="row"></section>
-	-->
 </main>
 
 <FixedMenu modalIsOpen={selectedLink} align={'bottom'}>
-	<div slot="modal">
-		<header class="flex-box">
-			<img src="{selectedLink.imgSrc}" width="24px" height="24px" alt="icon chat" />
-				<h4>{selectedLink.title}</h4>
-			<button class="close-button" on:click={() => selectedLink = false}>
-				<svg id="icon-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 121.31 122.876">
-					<path d="{close}" />
-				</svg>
-			</button>
-		</header>
-		<svelte:component this={Widgets[selectedLink.dialogContent]} />
-	</div>
+<div slot="modal">
+	<header class="flex-box">
+		<img src="{selectedLink.imgSrc}" width="24px" height="24px" alt="icon chat" />
+			<h4>{selectedLink.title}</h4>
+		<button class="close-button" on:click={() => selectedLink = false}>
+			<svg id="icon-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 121.31 122.876">
+				<path d="{close}" />
+			</svg>
+		</button>
+	</header>
+	<svelte:component this={Widgets[selectedLink.dialogContent]} />
+</div>
+
+{#if showMenu}
 	{#each links as link}
 		<slot>
 			<a 
+				in:fly="{{y: -5, duration: 380, delay: 380, elasticIn}}"
 				href={link.href}
 				target={link.target}
 				class={link.class}
@@ -123,26 +167,32 @@
 					}
 				}}>
 				<img src={link.imgSrc} alt={link.alt} />
+				{link.title}
 			</a>
 		</slot>
 	{/each}
+{/if}
 </FixedMenu>
+
 <BackgroundMaks></BackgroundMaks>
 <AnimatedBackground></AnimatedBackground>
 
 <style>
 	.fixed-menu-icon {
-		width: 56px; 
+		width: 56px;
 		height: 56px;
-		line-height: 4;
+		display: flex;
+		line-height: 1;
 		border-radius: 15px;
-		background: #f5f5f5;
-		border: 2px solid rgba(77, 77, 77, 0.1568627451);
 		transition: all 0.3s;
 		text-align: center;
-		margin: 0 auto;
+		font-size: 10px;
+		align-items: center;
+		flex-direction: column;
+		justify-content: space-evenly;
 	}
 	.fixed-menu-icon > img {
-		width: 30px; height: 30px;
+		width: 28px; height: 28px;
 	}
+
 </style>

@@ -5,16 +5,19 @@ a {
     color: $accent-color-primary;
     text-decoration: none;
 
-    &:hover {
-        text-decoration: underline;
-    }
-
     &:visited {
         color: $accent-color-visited;
     }
+
+    &:hover,
+    &:focus-visible,
+    &:focus {
+        background: transparent;
+        border-color: $accent-color-primary;
+    }
 }
 
-button:not(.dark-mode-toggle):not(.close-button),
+button:not(.dark-mode-toggle):not(.close-button):not(.icon-hamburger),
 select,
 textarea {
     padding: 0.5rem 0.6rem;
