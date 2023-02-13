@@ -95,6 +95,21 @@ main {
 	}
 }
 
+.overlay {
+	position: fixed;
+	z-index: 103;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	outline: 0;
+	background-color: rgba(0, 0, 0, 0.33);
+	background: rgba(0, 0, 0, 0.33);
+	border-radius: 0;
+}
+
 .Box {
 	scroll-snap-type: y mandatory;
 
@@ -187,6 +202,7 @@ dialog#menu-dialog {
 		justify-content: center;
 		max-height: 85.5vh;
 		padding-bottom: $spacing-1;
+		z-index: 104;
 
 		.scrollable {
 			flex: 1 1 auto;
@@ -234,7 +250,7 @@ dialog#menu-dialog {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: nowrap;
-	z-index: 101;
+	z-index: 103;
 
 	.toggleWrapper {
 		position: absolute;
@@ -463,7 +479,7 @@ input#optin[type="checkbox"]:before {
 	position: absolute;
 	width: 24px;
 	height: $fontsize-2;
-	top: -8px;
+	top: 2px;
 	left: 2px;
 	transform: scale(0);
 	transform-origin: bottom left;
@@ -483,7 +499,7 @@ input#optin[type="checkbox"]:before {
 	outline: unset;
 
 	svg {
-		margin-top: -2px;
+		margin-top: -1px;
 		margin-left: -1px;
 		filter: invert(0);
 		text-align: center;
@@ -553,14 +569,14 @@ body.dark-mode {
 		}
 	}
 
-	button:not(.close-button, .icon-hamburger) {
+	button:not(.close-button, .icon-hamburger, .overlay) {
 		cursor: pointer;
 		color: $accent-color-secondary;
 		border: 2px solid $accent-color-primary;
 		background: $accent-color-primary;
 		border-radius: $spacing-1;
-		padding: 0.5rem .6rem;
 		transition: all .7s;
+		margin: 0 auto;
 
 		&:focus,
 		&:active {
@@ -575,7 +591,7 @@ body.dark-mode {
 		background: $accent-color-secondary;
 		border-radius: $spacing-1;
 		border: 2px solid $accent-color-dialog;
-		z-index: 100;
+		z-index: 103;
 		position: fixed;
 		left: 30px;
 		right: 30px;
@@ -600,7 +616,7 @@ body.dark-mode {
 		.et_pb_contact_field {
 			margin-bottom: $spacing-1;
 		}
-		.et_pb_contact_field_3 {
+		.et_pb_contact_field_0 {
 			label.Field {
 				max-width: 90%;
 			}
@@ -626,7 +642,6 @@ body.dark-mode {
 				content: "";
 				position: absolute;
 				z-index: 1200;
-				bottom: 60px;
 				margin-left: 3px;
 				width: 0;
 				transition: all .3s;
@@ -637,7 +652,22 @@ body.dark-mode {
 		}
 	}
 
-	.et_pb_contact_field_3 {
+	.overlay {
+		position: fixed;
+		z-index: 101;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		outline: 0;
+		background-color: rgba(0, 0, 0, 0.66);
+		background: rgba(0, 0, 0, 0.66);
+		border-radius: 0;
+	}
+
+	.et_pb_contact_field_0 {
 		label.Field {
 			background: rgba(0, 0, 0, 0.15);
 			color: $accent-color-light;
@@ -702,8 +732,6 @@ body.dark-mode {
 	.icon-hamburger {
 		z-index: 333;
 		position: fixed;
-		width: 56px;
-		height: 56px;
 		cursor: pointer;
 		margin: 1px auto 0 auto;
 		background: $accent-color-secondary;
@@ -771,7 +799,7 @@ body.dark-mode {
 		max-height: 100%;
 	}
 
-	.et_pb_contact_field_3 {
+	.et_pb_contact_field_0 {
 		label.Field {
 			text-align: center;
 			max-width: 80%;
@@ -793,7 +821,7 @@ body.dark-mode {
 	}
 
 	dialog#menu-dialog {
-		z-index: 1010;
+		z-index: 104;
 
 		#Chat {
 			max-width: 306px;

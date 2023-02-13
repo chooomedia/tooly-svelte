@@ -1,27 +1,15 @@
 <script>
 	import { onMount } from 'svelte';
+	import { content } from './content.js';
 
-	let characters = 
-	[
-		'/icons/tooly-pattern-icon-farbroller-180x180px.png', 
-		'/icons/tooly-pattern-icon-pinsel-180x180px.png', 
-		'/icons/tooly-pattern-icon-saege-fuchsschwanz-180x180px.png',
-		'/icons/tooly-pattern-icon-schraubendreher-schraubenzieher-180x180px.png',
-		'/icons/tooly-pattern-icon-schraubenschluessel-180x180px.png',
-		'/icons/tooly-pattern-icon-spatel-180x180px.png',
-		'/icons/tooly-pattern-icon-spaten-schaufel-180x180px.png'
-	];
+	let characters = content.characters;
 
-	let tools = new Array(66).fill()
-		.map((_, i) => {
-			return {
-				character: characters[i % characters.length],
-				y: Math.random() * 120,
-				x: -10 - Math.random() * 20,
-				r: 0.5 + Math.random() * 1
-			};
-		})
-		.sort((a, b) => a.r - b.r);
+	let tools = Array.from({ length: 66 }, (_, i) => ({
+		character: characters[i % characters.length],
+		y: Math.random() * 120,
+		x: -10 - Math.random() * 20,
+		r: 0.5 + Math.random() * 1
+	})).sort((a, b) => a.r - b.r);
 
 	onMount(() => {
 		let frame;
@@ -29,10 +17,10 @@
 		function loop() {
 			frame = requestAnimationFrame(loop);
 
-			tools = tools.map(emoji => {
-				emoji.x += .1 * emoji.r;
-				if (emoji.x > 100) emoji.x = -50;
-				return emoji;
+			tools = tools.map(toolicon => {
+				toolicon.x += .1 * toolicon.r;
+				if (toolicon.x > 100) toolicon.x = -50;
+				return toolicon;
 			});
 		}
 		loop();

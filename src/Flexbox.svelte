@@ -9,6 +9,6 @@
 
 <style>
 	.flexbox {
-		padding: 30px 0;
+		padding: 0 0;
 	}
 </style>

@@ -39,7 +39,7 @@ header {
 	position: relative;
     flex-direction: row;
     align-items: center;
-	margin: 0 auto;
+	margin: -15px auto 0 auto;
 }
 
 @media screen and (max-width:768px) {
@@ -47,7 +47,7 @@ header {
 		padding: 0 15px;
 		width: 100%;
 		height: 132px;
-		margin-bottom: 15px;
+		margin: -3px auto 15px auto;
 	}
 }
 

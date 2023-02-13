@@ -26,10 +26,9 @@
 	import AnimatedBackground from './Animated-background.svelte';
 	import BackgroundMaks from './Background-maks.svelte';
 	import { close } from './shapes.js';
-	import { links } from './links.js';
 	import StickyContent from './StickyContent.svelte';
 	import { elasticIn, elasticOut } from 'svelte/easing';
-    import { fly } from 'svelte/transition';
+    import { fly, fade } from 'svelte/transition';
 
 	let stickToTop = true;
 	let selectedLink = undefined;
@@ -50,6 +49,18 @@
 	}
 	function onInvisible(e){
 	}
+
+	let menuKeyboard = false;
+
+	function keyEventListener(e) {
+		content.de.links.forEach((link) => {
+			if (e.key === link.id) {
+				showMenu = !showMenu;
+				menuKeyboard = true;
+			}
+		});
+	};
+
 </script>
 
 <Header brandName={'Tooly'}></Header>
@@ -61,8 +72,8 @@
 				{#if $darkmodestore}
 				<div in:fly="{{z: 300, duration: 700}}" out:fly="{{z: 300, duration: 700}}">
 					<ImageBubbles
-						on:lazyLoad={content.medias.mockups.lightSrc}
-						ImgSrc={content.medias.mockups.lightSrc}
+						on:lazyLoad={content.de.medias.mockups.lightSrc}
+						ImgSrc={content.de.medias.mockups.lightSrc}
 						bubbleLeft={content.de.bubbles.landing.left}
 						bubbleRight={content.de.bubbles.landing.right}
 						currentSection={currentSection}
@@ -71,8 +82,8 @@
 				{:else}
 				<div in:fly="{{z: 300, duration: 700}}" out:fly="{{z: 300, duration: 700}}">
 					<ImageBubbles 
-						on:lazyLoad={content.medias.mockups.darkSrc}
-						ImgSrc={content.medias.mockups.darkSrc}
+						on:lazyLoad={content.de.medias.mockups.darkSrc}
+						ImgSrc={content.de.medias.mockups.darkSrc}
 						bubbleLeft={content.de.bubbles.landing.left}
 						bubbleRight={content.de.bubbles.landing.right}
 						currentSection={currentSection}
@@ -149,14 +160,13 @@
 </div>
 
 {#if showMenu}
-	{#each links as link}
+	{#each content.de.links as link, index}
 		<slot>
-			<a 
-				in:fly="{{y: -5, duration: 380, delay: 380, elasticIn}}"
+			<a in:fly="{{y: -5, duration: 380, delay: 100, elasticIn}}"
 				href={link.href}
 				target={link.target}
 				class={link.class}
-				class:active = {selectedLink == link}
+				class:active={selectedLink == link}
 				rel={link.rel}
 				title={link.title}
 				on:click={() => {
@@ -165,7 +175,11 @@
 					} else {
 						selectedLink = link;
 					}
-				}}>
+				}}
+				on:keydown={keyEventListener}>
+				<span class="index-label" aria-label="menu-index-{index + 1}" in:fade>
+					{index + 1}
+				</span>
 				<img src={link.imgSrc} alt={link.alt} />
 				{link.title}
 			</a>
@@ -178,21 +192,33 @@
 <AnimatedBackground></AnimatedBackground>
 
 <style>
-	.fixed-menu-icon {
-		width: 56px;
-		height: 56px;
-		display: flex;
-		line-height: 1;
-		border-radius: 15px;
-		transition: all 0.3s;
-		text-align: center;
-		font-size: 10px;
-		align-items: center;
-		flex-direction: column;
-		justify-content: space-evenly;
-	}
-	.fixed-menu-icon > img {
-		width: 28px; height: 28px;
-	}
+.fixed-menu-icon {
+	width: 57.4px;
+	height: 52.4px;
+	display: flex;
+	line-height: 1;
+	border-radius: 15px;
+	transition: all 0.3s;
+	text-align: center;
+	font-size: 10px;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+.fixed-menu-icon > img {
+	width: 28px; height: 28px;
+}
+
+.index-label {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    width: 6px;
+    line-height: 6px;
+    font-size: 70%;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.2);
+    padding: 3px;
+}
 
 </style>

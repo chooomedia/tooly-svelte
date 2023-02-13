@@ -45,17 +45,15 @@
         max-height: 580px;
     }
 	.in {
-		animation: drop-shadow 2.8s 1.4s infinite;
-		filter: drop-shadow(0px 0px 0vw #5eff311a);
+		animation: drop-shadow;
+		animation-delay: 1.4s;
+		animation-duration: 2.8s;
+    	animation-iteration-count: infinite;
 	}
 
 	@keyframes drop-shadow {
-		0% {
-			filter: drop-shadow(0px 0px 1vw #5eff311a);
-		}
-		100% {
-			filter: drop-shadow(0px 0px 100vw #5dff31);
-		}
+		0% { filter: drop-shadow(0px 0px 0vw #5eff3135); }
+		100% { filter: drop-shadow(0px 0px 100vw #5dff31); }
 	}
 	.bubble-wrapper {
 		position: absolute;
