@@ -11,7 +11,7 @@
 	export let brandName;
 	let visible = true;
 </script>
-<header class="col-xs-12">
+<header class="col-lg-12 col-xs-12">
 	<Darkmode />
 	{#if visible}
 	<div>

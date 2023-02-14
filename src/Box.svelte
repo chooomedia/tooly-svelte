@@ -2,6 +2,7 @@
 	import { createEventDispatcher, onMount } from "svelte";
 	export let direction;
 	export let name;
+	export let height;
 
 	const eventDispatcher = createEventDispatcher();
 
@@ -32,24 +33,15 @@
 	}
 </script>
 
-<div bind:this={thisBox} class="Box {name} {direction}">
+<div bind:this={thisBox} class="Box {name} {direction}" style="min-height:{height}vh">
 	<slot/>
 </div>
 
 <slot name="cta" />
 
 <style>
-	.Box {
-		scroll-snap-type: y mandatory;
-		min-height: 100vh;
-	}
-
 	.Box.Forms {
-		transform: translateY(-1rem);
-	}
-
-	.flex-column {
-		flex-direction: column;
+		min-width: 478px;
 	}
 
 	.flex-row {
@@ -68,6 +60,7 @@
 
 		.Box.Forms {
 			transform: translateY(-1.2rem);
+			min-width: 320px;
 		}
 
 		.Box.Steps {

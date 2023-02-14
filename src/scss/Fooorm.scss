@@ -20,7 +20,7 @@ a {
 button:not(.dark-mode-toggle, .close-button, .icon-hamburger, .et_pb_contact_submit, .overlay),
 select,
 textarea {
-    padding: 0.5rem 0.6rem;
+    padding: 10px 2rem;
     box-sizing: border-box;
     transition: all .7s;
     border: 2px solid $accent-color-primary;
@@ -28,6 +28,32 @@ textarea {
 
     &:disabled {
         color: $accent-color-input-deactive;
+    }
+}
+
+.et_pb_button {
+    color: $accent-color-secondary;
+    border: 2px solid $accent-color-primary;
+    line-height: 50px;
+    font-weight: 700;
+    background: $accent-color-primary;
+    border-radius: $spacing-1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: 'Slabo27px';
+    font-size: 18px;
+    margin: 0 auto 15px auto;
+    transition: all .3s;
+    cursor: pointer;
+
+    &:visited,
+    &:active {
+        color: $accent-color-dialog;
+    }
+    
+    &:hover {
+        background: transparent;
     }
 }
 
@@ -115,46 +141,5 @@ input#optin[type="checkbox"]:checked:before {
         label.Field {
             text-align: center;
         }
-    }
-}
-
-.et_pb_section {
-    .et_pb_contact_form_0.et_pb_contact_form_container.et_pb_module {
-        .et_pb_button {
-            border-width: 0px !important;
-            border-radius: $spacing-1;
-            font-size: $fontsize-2;
-            font-family: $font-family_3 !important;
-            font-weight: 700 !important;
-            padding-top: 8px !important;
-            padding-bottom: 8px !important;
-            padding-right: 1em !important;
-            padding-left: 1em !important;
-
-            &:hover {
-                color: $color_3 !important;
-                background-image: initial !important;
-                background-color: $background-color_6 !important;
-                padding-right: 1em !important;
-                padding-left: 1em !important;
-            }
-
-            &:before {
-                display: none !important;
-            }
-
-            &:after {
-                display: none !important;
-            }
-        }
-    }
-
-    progress,
-    input[type='range'] {
-        font-family: $font-family_3 !important;
-        background: $accent-color-primary;
-        color: $accent-color-primary;
-        border-radius: $spacing-1;
-        overflow: hidden;
     }
 }

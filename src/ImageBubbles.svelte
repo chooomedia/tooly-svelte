@@ -2,35 +2,39 @@
     import { elasticIn, elasticOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';	
 	import { content } from './content.js';
+	import { onMount } from 'svelte'; 	
 
 	export let ImgSrc;
     export let bubbleLeft;
     export let bubbleRight;
 	export let currentSection;
+	let ready = false;
+
+	onMount(() => ready = true)
 </script>
 
 <div class="bubble-wrapper">
-	{#if currentSection === "Forms"}
-		<div class="bubble left Forms" in:fly="{{y: 300, delay: 0, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
+	{#if currentSection === "Forms" && ready}
+		<div class="bubble left Forms" in:fly="{{y: 300, delay:700, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
 			{bubbleLeft}
 		</div>
-		<div class="bubble right Forms" in:fly="{{y: 300, delay: 700, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
+		<div class="bubble right Forms" in:fly="{{y: 300, delay: 1400, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
 			{bubbleRight}
 		</div>
-	{:else if currentSection === "Steps"}
+	{:else if currentSection === "Steps" && ready}
 		<div class="bubble left Steps" in:fly="{{y: 300, delay: 700, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
 			{content.de.bubbles.steps.left}
 		</div>
 		<div class="bubble right Steps" in:fly="{{y: 300, delay: 1400, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
 			{content.de.bubbles.steps.right}
 		</div>
-	{:else if currentSection === "Roadmap"}
+	<!--{:else if currentSection === "Roadmap" && ready}
 		<div class="bubble left Roadmap" in:fly="{{y: 300, delay: 0, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
 			{@html content.de.bubbles.roadmap.left}
 		</div>
 		<div class="bubble right Roadmap" in:fly="{{y: 300, delay: 700, duration: 700, elasticIn}}" out:fly="{{y: 300, duration: 700, elasticOut}}">
 			{@html content.de.bubbles.roadmap.right}
-		</div>
+		</div>-->
 	{/if}
 </div>
 
@@ -119,6 +123,9 @@
             margin: 0 auto;
             transform: translateX(-4px);
         }
+		.bubble-wrapper {
+			min-width: 100%;
+		}
         .bubble.right {
             transform: translateY(7.5rem) translateX(8rem);
         }

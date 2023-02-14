@@ -85,8 +85,7 @@
 
     <style>
         .countdown {
-            height: 60px;
             max-width: 98%;
-            margin: 15px auto 30px auto;
+            margin: -3px auto 15px auto;
         }
     </style>

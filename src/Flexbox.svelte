@@ -1,4 +1,4 @@
-<div class="flexbox row">
+<div class="flexbox row-wraped">
 	<div class="col-lg-6 col-xs-12">
 		<slot name="left" />
 	</div>

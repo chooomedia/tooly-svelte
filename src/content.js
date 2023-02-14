@@ -1,15 +1,30 @@
 export const content = {
     de: {
+        bubbles: {
+            landing: {
+                left: 'Kannst du mir den Spaten...',
+                right: 'Ide tudnád hozni az ásót?'
+            },
+            steps: {
+                left: 'Tooly App: Nach Werkzeug fragen',
+                right: 'Werkzeug Bild & Name übersetzen lassen',
+                dropShadow: 'in'
+            }
+        },
+        ctaBox: {
+            headline: 'Ciao Sprachbarrieren: einfach während der Arbeit übersetzen',
+            subline: 'Verständigungslücken ab März 2023 mit Tooly schließen. Jetzt für Tooly App (Alpha) voranmelden'
+        },
         links: [
             {
                 id: 1,
-                href: "#modal-cookie-consent",
+                href: "#modal-tracking-settings",
                 imgSrc: "/icons/icons8-cookies-100.png",
                 alt: "icon cookies",
                 title: "Cookies",
                 class: "icon-cookie fixed-menu-icon",
                 rel: "noreferrer",
-                dialogContent: "Cookie"
+                dialogContent: "TrackingSettings"
             },
             {
                 id: 2,
@@ -64,41 +79,34 @@ export const content = {
         fields: [
             {
                 label: "Dein Name",
-                inputName: "name",
+                inputName: "formName",
                 inputType: "text",
                 placeholder: "Dein Name"
             },
             {
                 label: "Deine E-Mail-Adresse *",
-                inputName: "email",
+                inputName: "formEmail",
                 inputType: "email",
                 placeholder: "Deine E-Mail-Adresse *"
             },
             {
                 label: "Deine Telefonnummer",
-                inputName: "phone",
-                inputType: "text",
+                inputName: "formPhone",
+                inputType: "tel",
                 placeholder: "Deine Telefonnummer"
             }
         ],
-        bubbles: {
-            landing: {
-                left: 'Kannst du mir den S...',
-                right: 'Ide tudnád hozni az ásót?'
+        messages: {
+            success: {
+                headline: 'Erfolgreich gesendet!',
+                text: 'Du wirst gleich eine Bestätigungs E-Mail erhalten. Schaue bitte auch in deinen Spam Order. Wenn du deine Anmeldung nicht bestätigst werden Deine Daten nicht weiter verarbeitet.',
+                color: '#5dff31',
             },
-            steps: {
-                left: 'Tooly App: Nach Werkzeug fragen',
-                right: 'Werkzeug Bild & Name übersetzen lassen',
-                dropShadow: 'in'
-            },
-            roadmap: {
-                left: '<b>03 / 2023</b> App Android Launch',
-                right: '<b>06 / 2023</b> App IOS Launch'
+            error: {
+                headline: 'Fehler beim Senden!',
+                text: 'Bei der Übermittlung deiner Daten gab es einen Fehler. Bitte versuche es erneut.',
+                color: '#e01111'
             }
-        },
-        ctaBox: {
-            headline: 'Sprachunterstützung während der Arbeit Sprachen lernen',
-            subline: 'Verständigungslücken ab März mit Tooly schließen. Jetzt für Tooly App Alpha voranmelden'
         },
         stepBox: {
             steps: [
@@ -120,21 +128,33 @@ export const content = {
             ]
         },
         roadMap: {
+            headline: 'Tooly App Roadmap',
+            subline: 'Hey, ab Januar 2023 gehts los! Zuerst Bewerbungsphase, dann Webseite und Alpha App für Android (ab März) und IOS (ab Mai). Im September folgt die große Finanzierungsrunde. Wir sind bereit - Bist du dabei?',
             steps: [
                 {
-                    iconSrc: './icons/icons8-handshake-heart-100.png',
+                    iconSrc: './icons/icons8-hand-hello-100.png',
                     headline: '01 / 2023',
                     text: 'Start der Bewerbungsphase'
                 },
                 {
+                    iconSrc: './icons/icons8-handshake-heart-100.png',
+                    headline: '02 / 2023',
+                    text: 'Start der Webseite'
+                },
+                {
                     iconSrc: './icons/icons8-google-play-100.png',
                     headline: '03 / 2023',
-                    text: 'Start der Alpha App Android'
+                    text: 'Start der Alpha App Anroid'
                 },
                 {
                     iconSrc: './icons/icons8-app-store-100.png',
-                    headline: '06 / 2023',
+                    headline: '05 / 2023',
                     text: 'Start der Alpha App IOS'
+                },
+                {
+                    iconSrc: './icons/icons8-people-working-together-100.png',
+                    headline: '09 / 2023',
+                    text: 'Finanzierungsrunde'
                 }
             ]
         }

@@ -1,6 +1,5 @@
 @import 'scss/App.scss';
 @import 'scss/text.scss';
-@import 'scss/Flexbox.scss';
 @import 'scss/input.scss';
 @import 'scss/mixins.scss';
 @import 'scss/variables.scss';
@@ -31,7 +30,6 @@ h1,
 h2,
 h3,
 h4 {
-	font-family: 'Slabo27px', sans-serif;
 	color: $accent-color-light;
 	font-size: $fontsize-1;
 	color: $accent-color-secondary;
@@ -48,15 +46,13 @@ h2,
 h3,
 h4 {
 	padding: 0;
-	margin-top: 10px;
-	margin-bottom: $spacing-1;
+	margin: 0 auto;
 	line-height: 1.2em;
 }
 
 section {
 	margin: 0 auto;
-	width: 100%;
-	z-index: 999;
+	z-index: 3;
 
 	&#landingPage{
 		z-index: 3;
@@ -87,6 +83,10 @@ label {
 	}
 }
 
+p {
+	margin: $spacing-1 auto;
+}
+
 body {
 	line-height: 1.2em;
 	margin: 0 auto;
@@ -103,13 +103,26 @@ body {
 	min-height: calc($spacing-2 + 10px);
 }
 
+button.button-wrapper {
+	background-color: transparent!important;
+	background: transparent!important;
+	outline: unset;
+	box-shadow: unset;
+	border: unset!important;
+	text-decoration: unset;
+}
+
+.countdown .flex-box {
+	min-height: 75.59px;
+}
+
 @media screen and (max-width:768px) {
+	html {
+		overflow-x: hidden;
+	}
 	body {
 		overflow-y: scroll;
 		overflow-x: hidden;
-	}
-	.flex-box {
-		margin: 0 auto;
 	}
 }
 

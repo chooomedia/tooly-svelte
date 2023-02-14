@@ -15,7 +15,7 @@ h2 {
 h3 {
     font-family: $font-family_1;
     color: $accent-color-primary;
-    text-shadow: 0 0 1px $accent-color-secondary;
+    -webkit-text-stroke: 0.1px $accent-color-secondary;
     font-size: $spacing-3;
     text-align: center;
     margin-top: 0px;
@@ -42,9 +42,14 @@ h6 {
     text-align: center;
 }
 
+.bubble {
+    font-family: $font-family_3;
+}
+
 p {
     font-family: $font-family_1;
     font-size: $fontsize-1;
+    line-height: 1.3rem;
     text-align: center;
 }
 
@@ -58,4 +63,11 @@ strong {
     font-family: 'LatoRegular';
     font-weight: 700;
     font-size: 92%;
+}
+
+.text-error {
+    color: $accent-color-warning!important;
+}
+.text-success {
+    color: $accent-color-primary-50!important;
 }
